@@ -15,15 +15,15 @@
 
     {% for field,value in d.items %}
     <tr>
-        <td>
+        <th>
             {% block BSCT_DETAIL_FIELDS_FIELD %}
-            <b> {{ field }} </b>
+            {{ field.label }}
             {% endblock %}
-        </td>
+        </th>
 
         <td>
             {% block BSCT_DETAIL_FIELDS_VALUE %}
-            {{ value }}
+            {{ field.value }}
             {% endblock %}
         </td>
     </tr>

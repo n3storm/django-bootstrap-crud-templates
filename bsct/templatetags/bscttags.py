@@ -91,6 +91,17 @@ def append_querystring( request, exclude = None ):
 # Filters
 # -------------------------
 
+from django.db.models import ForeignKey
+
+def model_to_dict(instance):
+    data = {}
+    for field in instance._meta.fields:
+        data[field.name] = field.value_from_object(instance)
+        if isinstance(field, ForeignKey):
+            data[field.name] = field.rel.to.objects.get(pk=data[field.name])
+    return data
+
+
 @register.filter
 def get_detail( instance ):
     """
@@ -101,10 +112,23 @@ def get_detail( instance ):
     """
     details = serializers.serialize( "python", [instance] )[0]['fields']
 
-    for field in details.keys():
-        detail_method = getattr( instance, '%s_detail' % field, None )
-
+    details2 = list()
+    
+    for field in instance._meta.fields:
+        detail_method = getattr( instance, '%s_detail' % field.name, None )
         if detail_method:
-            details[ field ] = detail_method()
-
-    return details
+            v = detail_method()
+        elif field.name in details:
+            v = details[field.name]
+        else:
+            # internal ID field, for example : we don't want to display it
+            continue
+            
+        if field.verbose_name:
+            n = field.verbose_name
+        else:
+            n = field.name
+        
+        details2.append({'label':n,'value':v})
+    
+    return details2
