@@ -1,6 +1,7 @@
 {% extends 'bsct/base.html' %}
  
 {% load bscttags %}
+{% load bootstrap %}
 
 {% block BSCT_CONTENT %}
 
@@ -11,8 +12,9 @@
 <form 
     action  = ''
     method  = 'post' 
-    class   = 'form-inline' 
+    class   = 'form-horizontal'
     enctype = 'multipart/form-data' 
+    role    = 'form'
 >
 
     {% csrf_token %}
@@ -20,7 +22,7 @@
     <div class = 'well' >
 
         {% block BSCT_FORM_FIELDS %}
-        {{ form.as_p }}
+        {{ form|bootstrap_horizontal }}
         {% endblock %}
 
     </div>
