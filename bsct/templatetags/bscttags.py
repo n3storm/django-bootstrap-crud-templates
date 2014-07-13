@@ -119,9 +119,11 @@ def get_detail( instance ):
         if detail_method:
             v = detail_method()
         elif field.name in details:
-            v = details[field.name]
+            v = field.value_from_object(instance)
+            if isinstance(field, ForeignKey):
+                v = field.rel.to.objects.get(pk=v)
         else:
-            # internal ID field, for example : we don't want to display it
+            print "Drop {}".format(field.name)
             continue
             
         if field.verbose_name:
