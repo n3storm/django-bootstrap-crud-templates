@@ -19,6 +19,7 @@ Installation
 -------------
 1. ``pip install django-bootstrap-crud-templates``
 2. Add ``'bsct'`` in the ``INSTALLED_APPS`` list in your project's settings module.
+3. You should also use https://github.com/tzangms/django-bootstrap-form for this branch !
 
 Usage
 -----
