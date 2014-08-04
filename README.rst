@@ -2,6 +2,13 @@
 Django Bootstrap CRUD Templates
 ===============================
 
+Warning:
+My fork introduces dependencies and reuses full potential from:
+
+django-filter
+django-crispy-forms
+django-tables2
+
 Django has freed the developer from the toil of writing boilerplate view logic
 via its class-based view; and Bootstrap, the toil of designing aesthetic CSS+HTML
 components.
