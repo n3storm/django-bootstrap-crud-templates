@@ -7,7 +7,7 @@ from django.utils.module_loading import import_by_path
 #~ from django.utils import importlib
 import django_filters
 """
-These views do nothing other than provide members of the 'plain' BSCT template
+These views do nothing other than provide members of the 'plain' Steroids template
 set as default template names.
 """
 

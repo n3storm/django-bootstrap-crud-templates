@@ -1,8 +1,12 @@
-{% load bscttags %}
+{% load steroids_tags %}
+{% comment %}
+NOT IN USE, we are using django-tables2 pagination
+{% endcomment %}
+
 {% if is_paginated %}
 <div class="pagination">
     <ul class="pagination">
-        <li 
+        <li
             {% if page_obj.number == 1 %}
                 class = 'disabled'
             {% endif %}
@@ -33,7 +37,7 @@
         </li>
         {% endif %}
 
-        <li 
+        <li
             {% if page_obj.number == page_obj.paginator.num_pages %}
             class ='disabled'
             {% endif %}

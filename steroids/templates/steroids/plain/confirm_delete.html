@@ -1,14 +1,14 @@
-{% extends 'bsct/base.html' %}
+{% extends 'steroids/base.html' %}
 {% load i18n %}
 
-{% block BSCT_CONTENT %}
+{% block STEROIDS_CONTENT %}
 
-{% block BSCT_TITLE %}
+{% block STEROIDS_TITLE %}
     <div class="page-header">
         <h1>{{object}}
             <small>
-                {% block BSCT_DETAIL_ACTIONS %}
-                    {% include "bsct/actions.html" %}
+                {% block STEROIDS_ACTIONS %}
+                    {% include "steroids/actions.html" %}
                 {% endblock %}
             </small>
         </h1>
@@ -21,15 +21,15 @@
 >
     {% csrf_token %}
 
-    {% block BSCT_WARNING %}
+    {% block STEROIDS_WARNING %}
 
-        {% block BSCT_WARNING_ALERT %}
+        {% block STEROIDS_WARNING_ALERT %}
         <p class="alert alert-warning">
             Estás seguro de querer borrar "{{object}}"?
         </p>
         {% endblock %}
 
-        {% block BSCT_WARNING_OPTS %}
+        {% block STEROIDS_WARNING_OPTS %}
         <button
             class = 'btn btn-warning'
             type  = 'submit'

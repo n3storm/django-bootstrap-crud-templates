@@ -1,14 +1,14 @@
-{% extends 'bsct/base.html' %}
+{% extends 'steroids/base.html' %}
 
-{% load bscttags i18n crispy_forms_tags %}
+{% load steroids_tags i18n crispy_forms_tags %}
 
-{% block BSCT_CONTENT %}
-    {% block BSCT_TITLE %}
+{% block STEROIDS_CONTENT %}
+    {% block STEROIDS_TITLE %}
         <div class="page-header">
             <h1>{% get_verbose_name form.instance %}
                 <small>
-                    {% block BSCT_DETAIL_ACTIONS %}
-                        {% include "bsct/actions.html" %}
+                    {% block STEROIDS_ACTIONS %}
+                        {% include "steroids/actions.html" %}
                     {% endblock %}
                 </small>
             </h1>
@@ -27,7 +27,7 @@
             {{ form|crispy }}
 
             <div class='actions'>
-                {% block BSCT_FORM_ACTIONS %}
+                {% block STEROIDS_FORM_ACTIONS %}
                 <button
                     value = 'Save'
                     type  = 'submit'

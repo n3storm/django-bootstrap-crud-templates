@@ -1,47 +1,44 @@
-{% extends 'bsct/base.html' %}
+{% extends 'steroids/base.html' %}
 
-{% load bscttags i18n %}
+{% load steroids_tags i18n %}
 
-{% block BSCT_CONTENT %}
+{% block STEROIDS_CONTENT %}
 
-{% block BSCT_TITLE %}
+{% block STEROIDS_TITLE %}
     <div class="page-header">
         <h1>{{object}}
             <small>
-                {% block BSCT_DETAIL_ACTIONS %}
-                    {% include "bsct/actions.html" %}
+                {% block STEROIDS_ACTIONS %}
+                    {% include "steroids/actions.html" %}
                 {% endblock %}
             </small>
         </h1>
     </div>
 {% endblock %}
 
-{% block BSCT_DETAIL_FIELDS %}
-
+{% block STEROIDS_FIELDS %}
 <table class = 'table table-condensed' >
 {% with object|get_detail as d %}
 
     {% for field in d %}
     <tr>
         <th>
-            {% block BSCT_DETAIL_FIELDS_FIELD %}
+            {% block STEROIDS_FIELDS_FIELD %}
             {{ field.label }}
             {% endblock %}
         </th>
 
         <td>
-            {% block BSCT_DETAIL_FIELDS_VALUE %}
+            {% block STEROIDS_FIELDS_VALUE %}
             {{ field.value }}
             {% endblock %}
         </td>
     </tr>
     {% endfor %}
-
 {% endwith %}
-
 </table>
 
-    {% block BSCT_DETAIL_FIELDS_EXTRA %}
+    {% block STEROIDS_FIELDS_EXTRA %}
     {% endblock %}
 
 {% endblock %}
