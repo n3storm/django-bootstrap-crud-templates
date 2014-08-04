@@ -1,0 +1,67 @@
+{% load bscttags i18n %}
+
+<div class="btn-group">
+    {% if HIDE_ADD_LINK %}{% else %}
+        {% block BSCT_DETAIL_ACTIONS_ADD %}
+            {% if object_list.model.get_create_url  and request.path !=  object_list.model.get_create_url %}
+                <a
+                    class = 'btn btn-success'
+                    href  = '{{object_list.model.get_create_url}}'
+                    title="{% trans 'Create' %}"
+                >
+                    <span class="glyphicon glyphicon-plus"></span> {% get_verbose_name object_list.model %}
+                </a>
+            {% endif %}
+        {% endblock %}
+    {% endif %}
+
+
+        {% block BSCT_DETAIL_ACTIONS_DELETE %}
+            {% if object.get_delete_url  and request.path !=  object.get_delete_url %}
+            <a
+                class = 'btn btn-warning'
+                href  = '{{object.get_delete_url}}'
+                title = "{% trans 'Delete' %}"
+            >
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+            {% endif %}
+        {% endblock %}
+        {% block BSCT_DETAIL_ACTIONS_EDIT %}
+            {% if object.get_update_url  and request.path !=  object.get_update_url %}
+                <a
+                    class = 'btn btn-primary'
+                    href  = '{{object.get_update_url}}'
+                    title="{% trans 'Change' %}"
+                >
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            {% endif %}
+        {% endblock %}
+        {% block BSCT_DETAIL_ACTIONS_DETAIL %}
+            {% if object.get_absolute_url and request.path !=  object.get_absolute_url %}
+                <a
+                    class = 'btn btn-default'
+                    href  = '{{object.get_absolute_url}}'
+                    title="{% trans 'View' %}"
+                >
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </a>
+            {% endif %}
+        {% endblock %}
+        {% block BSCT_DETAIL_ACTIONS_LIST %}
+            {% if HIDE_LIST_LINK %}{% else %}
+                {% if object.get_list_url or model.get_list_url %}
+                    <a
+                        class = 'btn btn-default'
+                        href  = "{% if object.get_list_url %}{{ object.get_list_url }}{% elif model.get_list_url %}{{ model.get_list_url }}{% endif %}"
+                        title="{% trans 'List' %}"
+                    >
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </a>
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+        {% block BSCT_DETAIL_ACTIONS_EXTRA %}{% endblock %}
+
+</div>
