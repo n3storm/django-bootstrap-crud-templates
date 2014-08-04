@@ -36,7 +36,7 @@ def bootstrap_cdn( version = '3.1.1'):
     Returns a link to a CDN-hosted Bootstrap minified CSS file.
     """
     return netdna_css(
-        'bootstrap/%s/css/bootstrap.min.css' % version 
+        'bootstrap/%s/css/bootstrap.min.css' % version
     )
 
 @register.simple_tag
@@ -44,12 +44,12 @@ def bootswatch_cdn( theme, version = '3.1.1' ):
     """
     Returns a link to the named CDN-hosted Bootstrap Swatch theme.
     """
-    return netdna_css( 
-        "bootswatch/%s/%s/bootstrap.min.css" % (version,theme.lower()) 
+    return netdna_css(
+        "bootswatch/%s/%s/bootstrap.min.css" % (version,theme.lower())
     )
 
 
-# Verbose name retrievers 
+# Verbose name retrievers
 # -------------------------
 
 @register.simple_tag
@@ -80,13 +80,13 @@ def append_querystring( request, exclude = None ):
     if request and request.GET:
         amp = '&amp;'
         return amp + amp.join(
-            [ '%s=%s' % (k,v) 
-                for k,v in request.GET.iteritems() 
+            [ '%s=%s' % (k,v)
+                for k,v in request.GET.iteritems()
                     if k not in exclude ]
         )
 
     return ''
-    
+
 
 # Filters
 # -------------------------
@@ -108,12 +108,12 @@ def get_detail( instance ):
     Returns a dictionary of the models fields and values.
 
     If the method '<field>_detail' is defined, its value is used as the
-    displayed value for the field. 
+    displayed value for the field.
     """
     details = serializers.serialize( "python", [instance] )[0]['fields']
 
     details2 = list()
-    
+
     for field in instance._meta.fields:
         detail_method = getattr( instance, '%s_detail' % field.name, None )
         if detail_method:
@@ -121,16 +121,18 @@ def get_detail( instance ):
         elif field.name in details:
             v = field.value_from_object(instance)
             if isinstance(field, ForeignKey):
-                v = field.rel.to.objects.get(pk=v)
+                if v:
+                    v = field.rel.to.objects.get(pk=v)
+
         else:
             print "Drop {}".format(field.name)
             continue
-            
+
         if field.verbose_name:
             n = field.verbose_name
         else:
             n = field.name
-        
+
         details2.append({'label':n,'value':v})
-    
+
     return details2

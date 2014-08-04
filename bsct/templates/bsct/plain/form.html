@@ -1,49 +1,40 @@
 {% extends 'bsct/base.html' %}
- 
-{% load bscttags %}
+
+{% load bscttags i18n crispy_forms_tags %}
 
 {% block BSCT_CONTENT %}
+    {% block BSCT_TITLE %}
+        <div class="page-header">
+            <h1>{% get_verbose_name form.instance %}
+                <small>
+                    {% block BSCT_DETAIL_ACTIONS %}
+                        {% include "bsct/actions.html" %}
+                    {% endblock %}
+                </small>
+            </h1>
+        </div>
+    {% endblock %}
 
-{% block BSCT_TITLE %}
-<h2> Create {% get_verbose_name form.instance %} </h2>
-{% endblock %}
+    {% if form.helper %}
+        {% crispy form form.helper %}
+    {% else %}
+        <form
+            action  = '{{request.path}}'
+            method  = 'post'
+            enctype = 'multipart/form-data'
+        >
+            {% csrf_token %}
+            {{ form|crispy }}
 
-<form 
-    action  = ''
-    method  = 'post' 
-    class   = 'form-inline' 
-    enctype = 'multipart/form-data' 
->
-
-    {% csrf_token %}
-
-    <div class = 'well' >
-
-        {% block BSCT_FORM_FIELDS %}
-        {{ form.as_p }}
-        {% endblock %}
-
-    </div>
-
-    <div class='actions'>
-        {% block BSCT_FORM_ACTIONS %}
-        <input
-            value = 'Save'
-            type  = 'submit' 
-            class = 'btn btn-success' 
-        />
-
-        {% if form.instance.get_list_url %}
-            <a 
-                class = 'btn btn-default'
-                href  = '{{form.instance.get_list_url}}'
-            >
-                Back
-            </a>
-        {% endif %}
-        {% endblock %}
-    </div>
-
-</form>
-
+            <div class='actions'>
+                {% block BSCT_FORM_ACTIONS %}
+                <button
+                    value = 'Save'
+                    type  = 'submit'
+                    class = 'btn btn-success'
+                ><span class="glyphicon glyphicon-ok"></span> {% trans 'Save' %}</button>
+                {% endblock %}
+            </div>
+        </form>
+    {% endif %}
 {% endblock %}
