@@ -1,11 +1,12 @@
-{% extends bsct_base|default:'base.html' %}
+{% extends steroids_base|default:'base.html' %}
 
-{% load steroid_tags %}
+{% load steroids_tags %}
 
 {% block STEROIDS_CSS %}
 {% bootstrap_cdn %}
 {% endblock %}
 
-{% block STEROIDS_MAIN %}{% block STEROIDS_CONTENT %}{% endblock %}
+{% block STEROIDS_MAIN %}
+    {% block STEROIDS_CONTENT %}{% endblock %}
 {% endblock %}
 {% block sidebar %}{% block STEROIDS_SIDEBAR %}{% endblock %}{% endblock %}
