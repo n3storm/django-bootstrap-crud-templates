@@ -3,10 +3,10 @@ from os.path import dirname
 import steroids
 
 setup(
-    name    = '%s' % esteroid.__pkg_name__,
+    name    = '%s' % esteroids.__pkg_name__,
     version = steroids.__version__,
     author  = steroids.__author__,
-    author_email = "alem@cidola.com",
+    author_email = "nestor@estudionexos.com, alem@cidola.com",
     description  = steroids.__desc__,
     license      = steroids.__licence__,
     keywords     = "django, templates. bootstrap, bootstrap templates, crud templates, django-tables2, django-filter, django-crispy-forms",
