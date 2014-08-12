@@ -3,7 +3,7 @@ from os.path import dirname
 import steroids
 
 setup(
-    name    = '%s' % esteroids.__pkg_name__,
+    name    = '%s' % steroids.__pkg_name__,
     version = steroids.__version__,
     author  = steroids.__author__,
     author_email = "nestor@estudionexos.com, alem@cidola.com",
