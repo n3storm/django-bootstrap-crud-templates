@@ -24,8 +24,8 @@ Demo_
 
 Installation
 -------------
-1. ``pip install django-bootstrap-crud-templates``
-2. Add ``'bsct'`` in the ``INSTALLED_APPS`` list in your project's settings module.
+1. ``pip install django-steroids-crud``
+2. Add ``'steroids'`` in the ``INSTALLED_APPS`` list in your project's settings module.
 
 Usage
 -----
@@ -57,7 +57,7 @@ defined as: ::
     def get_delete_url( self ):
         return reverse( 'widget_delete', kwargs = {'pk' : self.pk } )
 
-You can skip defining these methods by adding the ``BSCTModelMixin`` to your
+You can skip defining these methods by adding the ``SteroidsModelMixin`` to your
 model and simply naming the corresponding URLs in the following way:
 
 - ``lowercasemodelname_detail``: For the DetailView.
@@ -195,7 +195,7 @@ follow the five steps below (assuming you have a GitHub account):
    - form.html
    - list.html
    - detail.html
-   - confirm_delete.html 
+   - confirm_delete.html
 
 3. (optional) Create a README.rst with a brief description of the template set and any other pertinent information ( external dependencies, author, homepage ).
 
